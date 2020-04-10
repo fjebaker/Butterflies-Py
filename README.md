@@ -13,7 +13,7 @@ brew link --overwrite portaudio
 (*todo: others*)
 
 ### Install from git
-To setup the, use
+To setup, use
 ```bash
 git clone https://github.com/Dustpancake/Butterflies-Py
 cd Butterflies-Py
