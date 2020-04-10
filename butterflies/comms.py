@@ -39,8 +39,12 @@ class SerialCallback(object):
 			self._write(vals)
 		except:
 			pass
+		self._pprint(vals, freqs)
+		return vals, freqs
 
-		# printing
+	def _pprint(self, vals, freqs):
+		""" pretty print the frequency bins and the serial return read
+		"""
 		pins = self._read()
 		if len(pins) != 6:
 			pins += [0 for i in range(6 - len(pins))]
@@ -81,14 +85,14 @@ class SerialCallback(object):
 			inp = self._s.read(6).decode('utf-8')
 			return [str(ord(i)) for i in inp]
 		else:
-			return ['0' for i in range(6)]
+			return ['-1' for i in range(6)]
 
 	def sample(self, frame):
 		""" fft transform into ._samples seperate samples between
 		"""
 		lmax = len(frame) // 2
 
-		res = abs(fft(frame))[:lmax] / 6666
+		res = abs(fft(frame))[:lmax] / 16666
 		freqs = fftfreq(frame.size, self._ts)[:lmax]
 		# frequencies should be mid point
 		freqs += (freqs[1] - freqs[0]) / 2
@@ -118,7 +122,7 @@ class SerialCallback(object):
 		selector = np.array([i for i in range(0, samples)], dtype=float)
 		s = selector.copy()
 		selector = np.exp(selector)
-		selector *= ((lmax - (2**7)) / max(selector))	# arbitrary value from trial and error
+		selector *= ((lmax - (2**10)) / max(selector))	# arbitrary value from trial and error
 		selector += s
 		return np.array(selector, dtype=int)
 
