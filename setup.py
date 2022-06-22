@@ -10,7 +10,7 @@ setup(
 	packages = 
 		['butterflies'],
 	install_requires = [
-		'numpy==1.18.2',
+		'numpy==1.22.0',
 		'PyAudio==0.2.11',
 		'pyserial==3.4',
 		'scipy==1.4.1'
