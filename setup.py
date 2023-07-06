@@ -13,7 +13,7 @@ setup(
 		'numpy==1.18.2',
 		'PyAudio==0.2.11',
 		'pyserial==3.4',
-		'scipy==1.4.1'
+		'scipy==1.10.0'
 	],
 	zip_safe = False
 )
